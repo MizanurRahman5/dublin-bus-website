@@ -6,7 +6,8 @@ const availableSeet = document.getElementById('available-seat');
 const totalPriceEl = document.getElementById('total-price');
 const couponField = document.getElementById('coupon-field');
 const couponBtn = document.getElementById('coupon-btn');
-
+const couponValue = document.getElementById('coupon-field');
+const grandTotalEl = document.getElementById('grand-total');
 let sum = 1;
 // let selectedSea = [];
 
@@ -33,7 +34,7 @@ function handleSelectSeat(event){
     const newAvailableSeet = availableSaetValue - 1;
     availableSeet.innerText = newAvailableSeet;
     array.push(event.innerText);
-    console.log(array);
+    // console.log(array);
 
     if(document.getElementById('total-booked').innerText > 3){
         couponField.removeAttribute('disabled');
@@ -70,3 +71,21 @@ function handleSelectSeat(event){
 
 
 }
+
+
+document.getElementById('coupon-btn').addEventListener('click', function(){
+    const couponValue2 = couponValue.value;
+    // console.log(couponValue2);
+    let couponSave = 0;
+    if(couponValue2 === 'NEW50' && couponValue2 === 'Couple 20'){
+        alert ('Your Provide Coupon is Not Valid');
+        return;
+    }
+    if(couponValue2 === 'NEW50'){
+        couponSave = totalPrice *.15;
+    }else if(couponValue2 === 'Couple 20'){
+        couponSave = totalPrice * .20;
+    }
+    const grandTotalValue = totalPrice - couponSave;
+    grandTotalEl.innerText = grandTotalValue;
+})
